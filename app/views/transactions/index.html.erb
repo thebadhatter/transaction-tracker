@@ -2,34 +2,37 @@
 
 <h1>Listing Transactions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Name</th>
-      <th>Product</th>
-      <th>Amount</th>
-      <th colspan="6"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
+<table border="1" width="100%">
+  <col style="width:40%">
+  <col style="width:30%"
+  <col style="width:30%"
+    <thead>
       <tr>
-        <td><%= transaction.date %></td>
-        <td><%= transaction.name %></td>
-        <td><%= transaction.product %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= link_to 'Show', transaction, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th colspan="10">Options</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.date.to_date %></td>
+          <td><%= transaction.name %></td>
+          <td><%= transaction.product %></td>
+          <td><%= transaction.amount %></td>
+          <td><%= link_to 'Show', transaction, class: 'btn btn-primary btn-xs' %></td>
+          <td><%= link_to 'Edit', edit_transaction_path(transaction), class: 'btn btn-info btn-xs' %></td>
+          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to new_transaction_path, class: 'btn btn-success' do %>
+  <br>
+
+  <%= link_to new_transaction_path, class: 'btn btn-success' do %>
   <i class="glyphicon glyphicon-plus"></i> New Transaction
-<% end %>
+  <% end %>
