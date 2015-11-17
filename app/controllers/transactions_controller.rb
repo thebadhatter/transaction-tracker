@@ -28,9 +28,11 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        flash[:success] = 'Transaction added.'
+        format.html { redirect_to @transaction }
         format.json { render :show, status: :created, location: @transaction }
       else
+        flash[:danger] = 'There was a problem saving the transaction.'
         format.html { render :new }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -42,9 +44,11 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        flash[:success] = 'Transaction updated.'
+        format.html { redirect_to @transaction }
         format.json { render :show, status: :ok, location: @transaction }
       else
+        flash[:danger] = 'There was a problem updating the transaction.'
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -56,7 +60,8 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
+      flash[:success] = 'Record of transaction deleted.'
+      format.html { redirect_to transactions_url }
       format.json { head :no_content }
     end
   end

@@ -8,10 +8,10 @@
   <col style="width:30%"
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Product</th>
-        <th>Amount</th>
+        <th align="center">Date</th>
+        <th align="center">Name</th>
+        <th align="center">Product</th>
+        <th align="center">Amount</th>
         <th colspan="10">Options</th>
       </tr>
     </thead>
@@ -22,7 +22,7 @@
           <td><%= transaction.date.to_date %></td>
           <td><%= transaction.name %></td>
           <td><%= transaction.product %></td>
-          <td><%= transaction.amount %></td>
+          <td align="right">$<%= transaction.amount %></td>
           <td><%= link_to 'Show', transaction, class: 'btn btn-primary btn-xs' %></td>
           <td><%= link_to 'Edit', edit_transaction_path(transaction), class: 'btn btn-info btn-xs' %></td>
           <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
